@@ -1,4 +1,4 @@
-# Deep Learning-Based Insect Genera Classification
+# Insect Genus Classification Using Transfer Learning and Hybrid Ensemble Models
 
 This repository contains the source code developed as part of my MSc thesis. The work has also been extended into the research manuscript entitled:
 
