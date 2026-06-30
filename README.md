@@ -4,15 +4,15 @@ This repository contains the source code, experimental workflow, and reproducibi
 
 **“Insect Genus Classification Using Transfer Learning and Hybrid Ensemble Models.”**
 
-The project investigates the use of deep learning, transfer learning, and hybrid ensemble learning for automated insect genus classification using image datasets collected from publicly available third-party repositories. A custom Convolutional Neural Network (CNN), four transfer learning models, and a hybrid ensemble model were developed, trained, evaluated, and compared.
+The project investigates the use of deep learning, transfer learning, and hybrid ensemble learning for automated insect genus classification using image datasets collected from publicly available third-party repositories. Several transfer learning models and a hybrid ensemble model were developed, trained, evaluated, and compared for automated insect genus classification.
 
-
+---
 
 ## 1. Project Overview
 
 Accurate identification of medically and environmentally important insect genera is useful for entomological research, vector surveillance, public health monitoring, and automated image-based biodiversity analysis.
 
-This project classifies insect images into seven genera using convolutional deep learning models. The study compares the performance of a custom CNN, individual transfer learning architectures, and a hybrid ensemble model that combines the outputs of the best-performing models.
+This project classifies insect images into seven genera using convolutional deep learning models. The study compares the performance of individual transfer learning architectures and a hybrid ensemble model that combines the outputs of high-performing models.
 
 The main goals of this repository are to:
 
@@ -22,7 +22,7 @@ The main goals of this repository are to:
 * Compare individual transfer learning models with a hybrid ensemble approach.
 * Support reproducibility for the associated AI Application manuscript.
 
-
+---
 
 ## 2. Insect Genera
 
@@ -36,24 +36,26 @@ The models classify images into the following seven insect genera:
 6. **Pediculus**
 7. **Triatoma**
 
-
+---
 
 ## 3. Models Implemented
 
 The following models were implemented and evaluated:
 
-1. **Custom Convolutional Neural Network (CNN)**
-2. **InceptionV3**
-3. **DenseNet201**
-4. **EfficientNet-B5**
-5. **ConvNeXt-Large**
-6. **Hybrid Ensemble Model**
+1. **InceptionV3**
+2. **DenseNet201**
+3. **EfficientNet-B5**
+4. **ConvNeXt-Large**
+5. **Hybrid Ensemble Model**
 
    * ConvNeXt-Large + EfficientNet-B5
 
 The hybrid ensemble model combines predictions from ConvNeXt-Large and EfficientNet-B5 to improve classification robustness and comparative performance.
 
+> **Important reproducibility note:**
+> If the manuscript also reports results for a Custom Convolutional Neural Network (CNN), the corresponding Custom CNN notebook or source code should also be uploaded to this repository. Otherwise, the README should only describe the models whose code is available in the repository.
 
+---
 
 ## 4. Dataset Information
 
@@ -86,7 +88,7 @@ The data used in this study are available from the following sources:
    * Source: iNaturalist
    * URL: https://www.inaturalist.org/taxa/47437-Pediculus
 
-
+---
 
 ## 5. Third-Party Data Acknowledgement and Licensing
 
@@ -103,13 +105,13 @@ DOI: **10.17632/88s6fvgg2p.4**
 
 If any representative images are reproduced in a manuscript, report, presentation, or publication, users must ensure that the specific image license permits reproduction and that proper attribution is provided.
 
-
+---
 
 ## 6. Dataset Structure
 
 After downloading and preparing the data, organize the dataset using the following directory structure:
 
-
+```text
 dataset/
 ├── train/
 │   ├── Aedes/
@@ -135,17 +137,19 @@ dataset/
     ├── Ctenocephalides/
     ├── Pediculus/
     └── Triatoma/
-
+```
 
 Each genus folder should contain image files belonging to that class.
 
 Recommended image formats:
 
-
+```text
 .jpg
 .jpeg
 .png
+```
 
+---
 
 ## 7. Data Preparation
 
@@ -160,7 +164,7 @@ The general dataset preparation workflow consists of:
 7. Using the validation set for model selection and checkpoint monitoring.
 8. Using the test set only for final performance evaluation.
 
-
+---
 
 ## 8. Preprocessing and Augmentation
 
@@ -184,103 +188,83 @@ Data augmentation may include:
 
 Augmentation is applied only to the training set to improve model generalization. Validation and testing images are not augmented, except for deterministic resizing and normalization.
 
-
+---
 
 ## 9. Repository Contents
 
+The repository contains the following files and folders:
 
-insect-classification-deep-learning/
+```text
 insect-classification-deep-learning/
 ├── notebooks/
 │   ├── ConvNeXt.ipynb
 │   ├── Hybrid_conv_eff.ipynb
 │   ├── Inception_tl.ipynb
 │   ├── denseNet_tl.ipynb
-│   └── efficientNet_tl.ipynb  
+│   └── efficientNet_tl.ipynb
 ├── README.md
 └── requirements.txt
-Code Information
-notebooks/
+```
 
-This folder contains the experimental notebooks used to train and evaluate the transfer learning and hybrid ensemble models.
-
-The available notebooks are:
-
-ConvNeXt.ipynb
-
-This notebook implements the ConvNeXt-Large transfer learning model for seven-class insect genus classification. It includes dataset loading, preprocessing, model preparation, training, validation, and final evaluation.
-
-efficientNet_tl.ipynb
-
-This notebook implements the EfficientNet-B5 transfer learning model. It includes the full workflow for training and evaluating EfficientNet-B5 on the insect genus image dataset.
-
-denseNet_tl.ipynb
-
-This notebook implements the DenseNet201 transfer learning model. It includes preprocessing, model fine-tuning, performance evaluation, and generation of classification metrics.
-
-Inception_tl.ipynb
-
-This notebook implements the InceptionV3 transfer learning model. It trains and evaluates the model using the prepared insect genus dataset.
-
-Hybrid_conv_eff.ipynb
-
-This notebook implements the hybrid ensemble model using ConvNeXt-Large and EfficientNet-B5. It loads or uses the predictions from the trained ConvNeXt and EfficientNet models and combines them to produce the final ensemble classification results.
-
-The hybrid ensemble is used to compare whether combining two high-performing transfer learning models improves classification performance compared with using individual models alone.
-
+---
 
 ## 10. Code Information
 
 ### 10.1 `notebooks/`
 
-This folder contains the experimental notebooks used to train and evaluate each model.
+This folder contains the experimental notebooks used to train and evaluate the transfer learning and hybrid ensemble models.
 
-Suggested notebook purpose:
+The available notebooks are:
 
-* `custom_cnn.ipynb`
-  Trains and evaluates the custom CNN baseline model.
+### `ConvNeXt.ipynb`
 
-* `inceptionv3_tl.ipynb`
-  Implements transfer learning using InceptionV3.
+This notebook implements the ConvNeXt-Large transfer learning model for seven-class insect genus classification. It includes dataset loading, preprocessing, model preparation, training, validation, and final evaluation.
 
-* `densenet201_tl.ipynb`
-  Implements transfer learning using DenseNet201.
+### `efficientNet_tl.ipynb`
 
-* `efficientnet_b5_tl.ipynb`
-  Implements transfer learning using EfficientNet-B5.
+This notebook implements the EfficientNet-B5 transfer learning model. It includes the workflow for training and evaluating EfficientNet-B5 on the insect genus image dataset.
 
-* `convnext_large_tl.ipynb`
-  Implements transfer learning using ConvNeXt-Large.
+### `denseNet_tl.ipynb`
 
-* `hybrid_convnext_efficientnet.ipynb`
-  Implements the hybrid ensemble model using ConvNeXt-Large and EfficientNet-B5 predictions.
+This notebook implements the DenseNet201 transfer learning model. It includes preprocessing, model fine-tuning, performance evaluation, and generation of classification metrics.
 
+### `Inception_tl.ipynb`
 
+This notebook implements the InceptionV3 transfer learning model. It trains and evaluates the model using the prepared insect genus dataset.
+
+### `Hybrid_conv_eff.ipynb`
+
+This notebook implements the hybrid ensemble model using ConvNeXt-Large and EfficientNet-B5. It loads or uses the predictions from the trained ConvNeXt and EfficientNet models and combines them to produce the final ensemble classification results.
+
+The hybrid ensemble is used to compare whether combining two high-performing transfer learning models improves classification performance compared with using individual models alone.
+
+---
 
 ## 11. Development Environment
 
 The experiments were developed and executed using the following environment:
 
-
+```text
 Python 3.10
 PyTorch
 Torchvision
 Google Colab
 NVIDIA T4 GPU
 NVIDIA A100 GPU
-
+```
 
 The notebooks can be executed using either:
 
-* Google Colab, or
-* A local Jupyter Notebook environment with GPU support.
+* Google Colab
+* A local Jupyter Notebook environment with GPU support
 
+---
 
 ## 12. Requirements
 
 The project requires the following Python libraries:
 
-
+```text
 torch
 torchvision
 numpy
@@ -288,17 +272,17 @@ matplotlib
 scikit-learn
 opencv-python
 pillow
-
+```
 
 Install all dependencies using:
 
-
+```bash
 pip install -r requirements.txt
-
+```
 
 A recommended `requirements.txt` file is:
 
-
+```text
 torch
 torchvision
 numpy
@@ -306,33 +290,33 @@ matplotlib
 scikit-learn
 opencv-python
 pillow
-
+```
 
 For stricter reproducibility, users are encouraged to record the exact package versions used in their execution environment.
 
-
+---
 
 ## 13. Installation
 
 Clone the repository:
 
-
+```bash
 git clone https://github.com/zbumar17/insect-classification-deep-learning.git
-
+```
 
 Move into the project directory:
 
-
+```bash
 cd insect-classification-deep-learning
-
+```
 
 Install the required dependencies:
 
-
+```bash
 pip install -r requirements.txt
+```
 
-
-
+---
 
 ## 14. Usage Instructions
 
@@ -344,15 +328,15 @@ Download the required image datasets from the public sources listed in the Datas
 
 Organize the images into the following structure:
 
-
+```text
 dataset/train/
 dataset/val/
 dataset/test/
-
+```
 
 Each split should contain seven class folders:
 
-
+```text
 Aedes
 Anopheles
 Culex
@@ -360,7 +344,7 @@ Cimex
 Ctenocephalides
 Pediculus
 Triatoma
-
+```
 
 ### Step 3: Upload the dataset to the working environment
 
@@ -368,24 +352,26 @@ If using Google Colab, upload the dataset to Google Drive or directly to the Col
 
 Example Google Drive structure:
 
-
+```text
 /content/drive/MyDrive/insect_dataset/
 ├── train/
 ├── val/
 └── test/
-
+```
 
 ### Step 4: Open the required notebook
 
 Open the notebook corresponding to the model you want to train.
 
-For example:
+Available notebooks:
 
-
-notebooks/densenet201_tl.ipynb
-notebooks/efficientnet_b5_tl.ipynb
-notebooks/convnext_large_tl.ipynb
-
+```text
+notebooks/ConvNeXt.ipynb
+notebooks/efficientNet_tl.ipynb
+notebooks/denseNet_tl.ipynb
+notebooks/Inception_tl.ipynb
+notebooks/Hybrid_conv_eff.ipynb
+```
 
 ### Step 5: Update dataset paths
 
@@ -393,11 +379,11 @@ Inside the notebook, update the dataset path variable to match your local or Goo
 
 Example:
 
-
+```python
 DATA_DIR = "/content/drive/MyDrive/insect_dataset"
+```
 
-
-### Step 6: Train the model
+### Step 6: Train the individual models
 
 Run the notebook cells sequentially to:
 
@@ -405,32 +391,49 @@ Run the notebook cells sequentially to:
 2. Apply preprocessing.
 3. Build the model.
 4. Train the model.
-5. Save the best checkpoint.
+5. Save or record the best model results.
 6. Evaluate the model.
+
+Recommended execution order for individual models:
+
+```text
+1. Inception_tl.ipynb
+2. denseNet_tl.ipynb
+3. efficientNet_tl.ipynb
+4. ConvNeXt.ipynb
+```
 
 ### Step 7: Evaluate individual models
 
 Each model notebook produces evaluation results such as:
 
-* Accuracy.
-* Precision.
-* Recall.
-* F1-score.
-* Confusion matrix.
-* ROC-AUC curve.
-* Precision-recall curve.
+* Accuracy
+* Precision
+* Recall
+* F1-score
+* Confusion matrix
+* ROC-AUC curve
+* Precision-recall curve
 
 ### Step 8: Run the hybrid ensemble notebook
 
-After training ConvNeXt-Large and EfficientNet-B5, run:
+After running the ConvNeXt and EfficientNet notebooks, run:
 
+```text
+notebooks/Hybrid_conv_eff.ipynb
+```
 
-notebooks/hybrid_convnext_efficientnet.ipynb
+This notebook combines the ConvNeXt-Large and EfficientNet-B5 outputs to generate the hybrid ensemble results.
 
+Recommended final execution sequence:
 
-This notebook loads the trained models and combines their predictions to generate the hybrid ensemble results.
+```text
+1. efficientNet_tl.ipynb
+2. ConvNeXt.ipynb
+3. Hybrid_conv_eff.ipynb
+```
 
-
+---
 
 ## 15. Methodology
 
@@ -455,21 +458,18 @@ The complete workflow consists of the following stages:
    Augmentation techniques were applied to the training data to improve model generalization.
 
 7. **Model Development**
-   A custom CNN and four transfer learning models were implemented.
+   Transfer learning models were implemented and fine-tuned for insect genus classification.
 
-8. **Transfer Learning**
-   Pre-trained deep learning architectures were fine-tuned for seven-class insect genus classification.
-
-9. **Hybrid Ensemble Learning**
+8. **Hybrid Ensemble Learning**
    ConvNeXt-Large and EfficientNet-B5 were combined to create a hybrid ensemble classifier.
 
-10. **Performance Evaluation**
-    All models were evaluated using the same test set and the same assessment metrics.
+9. **Performance Evaluation**
+   All models were evaluated using the same test set and the same assessment metrics.
 
-11. **Comparative Analysis**
-    The performance of the custom CNN, individual transfer learning models, and hybrid ensemble model was compared.
+10. **Comparative Analysis**
+    The performance of the individual transfer learning models and the hybrid ensemble model was compared.
 
-
+---
 
 ## 16. Evaluation Method
 
@@ -479,29 +479,27 @@ The evaluation method included:
 
 1. Training each model on the training set.
 2. Monitoring performance using the validation set.
-3. Saving the best-performing checkpoint where applicable.
-4. Loading the best checkpoint for final testing.
-5. Evaluating all models on the same test set.
-6. Computing classification metrics for each model.
-7. Comparing the results of all individual models.
-8. Evaluating the hybrid ensemble model using the same test data.
+3. Saving or recording the best-performing model results where applicable.
+4. Evaluating all models on the same test set.
+5. Computing classification metrics for each model.
+6. Comparing the results of all individual models.
+7. Evaluating the hybrid ensemble model using the same test data.
 
 The models evaluated include:
 
-* Custom CNN.
-* InceptionV3.
-* DenseNet201.
-* EfficientNet-B5.
-* ConvNeXt-Large.
-* Hybrid Ensemble Model.
+* InceptionV3
+* DenseNet201
+* EfficientNet-B5
+* ConvNeXt-Large
+* Hybrid Ensemble Model
 
 The comparative analysis was performed to determine whether the hybrid ensemble improved classification performance compared with individual models.
 
-
+---
 
 ## 17. Assessment Metrics
 
-The following metrics were used to evaluate model performance:
+The following metrics were used to evaluate model performance.
 
 ### 17.1 Accuracy
 
@@ -539,13 +537,13 @@ Precision-recall curves show the relationship between precision and recall acros
 
 They are useful for understanding model behavior, especially when class imbalance is present.
 
-
+---
 
 ## 18. Expected Outputs
 
 After running the notebooks, the following outputs may be generated:
 
-
+```text
 outputs/
 ├── accuracy_loss_curves/
 ├── confusion_matrices/
@@ -553,19 +551,22 @@ outputs/
 ├── roc_auc_curves/
 ├── precision_recall_curves/
 └── model_comparison_results/
+```
 
+Typical output files may include:
 
-Typical output files include:
-
-
+```text
 confusion_matrix_densenet201.png
 classification_report_efficientnet_b5.txt
 roc_auc_convnext_large.png
 precision_recall_hybrid_ensemble.png
 model_comparison_table.csv
+```
 
+> **Note:**
+> If the repository does not currently include an `outputs/` folder, users can create it manually to store generated figures, reports, and model comparison files.
 
-
+---
 
 ## 19. Reproducibility Notes
 
@@ -576,26 +577,25 @@ To reproduce the experiments:
 3. Use the same train, validation, and test split strategy.
 4. Use the same preprocessing and augmentation steps.
 5. Run each notebook from top to bottom.
-6. Save model checkpoints after training.
-7. Use the saved ConvNeXt-Large and EfficientNet-B5 checkpoints for the hybrid ensemble experiment.
-8. Evaluate all models on the same test set.
-9. Compare the output metrics.
+6. Run EfficientNet-B5 and ConvNeXt-Large before running the hybrid ensemble notebook.
+7. Evaluate all models on the same test set.
+8. Compare the output metrics.
 
 Results may vary slightly depending on:
 
-* GPU type.
-* Random seed.
-* PyTorch/CUDA version.
-* Dataset split.
-* Batch size.
-* Training duration.
-* Data augmentation randomness.
+* GPU type
+* Random seed
+* PyTorch/CUDA version
+* Dataset split
+* Batch size
+* Training duration
+* Data augmentation randomness
 
 For best reproducibility, users should set random seeds in Python, NumPy, and PyTorch.
 
 Example:
 
-
+```python
 import random
 import numpy as np
 import torch
@@ -609,29 +609,29 @@ torch.cuda.manual_seed_all(seed)
 
 torch.backends.cudnn.deterministic = True
 torch.backends.cudnn.benchmark = False
+```
 
-
-
+---
 
 ## 20. Citation
 
 If you use this repository, dataset preparation workflow, or code in your research, please cite the associated manuscript:
 
-
+```text
 Umar, Z. B., et al. Insect Genus Classification Using Transfer Learning and Hybrid Ensemble Models.
-
+```
 
 The full citation will be updated after publication.
 
 Please also cite the original third-party datasets according to their required citation formats and license terms.
 
-
+---
 
 ## 21. Dataset References
 
 The datasets used in this study are available at:
 
-
+```text
 Chula Mosquito Classification Dataset
 https://www.kaggle.com/datasets/cyberthorn/chula-mosquito-classification?select=Ae-aegypti
 
@@ -643,9 +643,9 @@ https://data.mendeley.com/datasets/88s6fvgg2p/4
 
 iNaturalist – Pediculus
 https://www.inaturalist.org/taxa/47437-Pediculus
+```
 
-
-
+---
 
 ## 22. License
 
@@ -655,7 +655,7 @@ The source code in this repository may be used, modified, and extended for non-c
 
 The image datasets are not owned by the repository authors. Users must comply with the original licenses and terms of use of Kaggle, GBIF, Mendeley Data, iNaturalist, and the individual image contributors.
 
-
+---
 
 ## 23. Contribution Guidelines
 
@@ -672,12 +672,13 @@ Suggested contribution areas include:
 
 Before contributing, please ensure that no copyrighted or restricted third-party images are uploaded directly to this repository unless redistribution is explicitly permitted by the relevant license.
 
-
+---
 
 ## 24. Contact
 
 For questions related to this repository or the associated research manuscript, please contact the corresponding author or open an issue in the repository.
 
+---
 
 ## 25. Disclaimer
 
